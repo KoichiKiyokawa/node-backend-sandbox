@@ -7,6 +7,7 @@ specifiers:
   '@nestjs/platform-express': ^7.6.15
   '@nestjs/schematics': ^7.3.0
   '@nestjs/testing': ^7.6.15
+  '@nestjs/typeorm': 9.0.0-next.2
   '@tsconfig/strictest': ^1.0.1
   '@types/express': ^4.17.11
   '@types/jest': ^26.0.22
@@ -36,6 +37,7 @@ dependencies:
   '@nestjs/common': 7.6.18_rzwuw5ib3hjf6qwl6ncwhvhvxq
   '@nestjs/core': 7.6.18_z4rmct5ppkbiqzc2qcxgc4l5n4
   '@nestjs/platform-express': 7.6.18_ezseebmi4ciby6kdvs2gspf26q
+  '@nestjs/typeorm': 9.0.0-next.2_2hzey2iipjzpahdu4m7fgqeyh4
   reflect-metadata: 0.1.13
   rhodash: 2.1.0
   rimraf: 3.0.2
@@ -901,6 +903,23 @@ packages:
       '@nestjs/platform-express': 7.6.18_ezseebmi4ciby6kdvs2gspf26q
       tslib: 2.2.0
     dev: true
+
+  /@nestjs/typeorm/9.0.0-next.2_2hzey2iipjzpahdu4m7fgqeyh4:
+    resolution: {integrity: sha512-2sb4fHH21SBCOrwvv9hyamUCgAc23eXA+/uyAeu7/VhOUnce8Iw7apNJQKK5PxbBWOCC4vXoIc5P8sDML5yNGA==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+      reflect-metadata: ^0.1.13
+      rxjs: ^7.2.0
+      typeorm: ^0.3.0
+    dependencies:
+      '@nestjs/common': 7.6.18_rzwuw5ib3hjf6qwl6ncwhvhvxq
+      '@nestjs/core': 7.6.18_z4rmct5ppkbiqzc2qcxgc4l5n4
+      reflect-metadata: 0.1.13
+      rxjs: 6.6.7
+      typeorm: 0.3.6_vew7pglwhrlxwxiicvvove6edq
+      uuid: 8.3.2
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
