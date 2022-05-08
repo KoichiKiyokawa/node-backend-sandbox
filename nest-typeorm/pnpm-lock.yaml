@@ -25,7 +25,7 @@ specifiers:
   rxjs: 7.5.5
   sqlite3: 5.0.8
   supertest: 6.2.3
-  ts-jest: 28.0.1
+  ts-jest: 28.0.2
   ts-loader: 9.3.0
   ts-node: 10.7.0
   tsconfig-paths: 4.0.0
@@ -61,7 +61,7 @@ devDependencies:
   jest: 28.1.0_p2brwx6nx5zpemlvbnwk444zqy
   prettier: 2.6.2
   supertest: 6.2.3
-  ts-jest: 28.0.1_z3fx76c5ksuwr36so7o5uc2kcy
+  ts-jest: 28.0.2_z3fx76c5ksuwr36so7o5uc2kcy
   ts-loader: 9.3.0_dgip6vjrhmffcc4ihrseicj6om
   ts-node: 10.7.0_7vfv75elicf7ijnl73ckmqo2cm
   tsconfig-paths: 4.0.0
@@ -5317,8 +5317,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-jest/28.0.1_z3fx76c5ksuwr36so7o5uc2kcy:
-    resolution: {integrity: sha512-PbkbitaT/9ZYAqqzk3UYTvCq080Seo46T3m/AdwcZ0D8WH2uBhG6PvA8oOAWsZIknzPQU66fYobvFCL8IqIhmg==}
+  /ts-jest/28.0.2_z3fx76c5ksuwr36so7o5uc2kcy:
+    resolution: {integrity: sha512-IOZMb3D0gx6IHO9ywPgiQxJ3Zl4ECylEFwoVpENB55aTn5sdO0Ptyx/7noNBxAaUff708RqQL4XBNxxOVjY0vQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
