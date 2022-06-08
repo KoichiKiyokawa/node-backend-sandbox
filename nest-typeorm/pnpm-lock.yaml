@@ -9,7 +9,7 @@ specifiers:
   '@nestjs/testing': 8.4.6
   '@tsconfig/strictest': 1.0.1
   '@types/express': 4.17.13
-  '@types/jest': 27.5.2
+  '@types/jest': 28.1.1
   '@types/node': 17.0.39
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 5.27.0
@@ -50,7 +50,7 @@ devDependencies:
   '@nestjs/testing': 8.4.6_ao2apqzecfj6tlim53vr4xrmvq
   '@tsconfig/strictest': 1.0.1
   '@types/express': 4.17.13
-  '@types/jest': 27.5.2
+  '@types/jest': 28.1.1
   '@types/node': 17.0.39
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 5.27.0_kor2e3kwnnzugzo3aovmfcq2la
@@ -1145,8 +1145,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.5.2:
-    resolution: {integrity: sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==}
+  /@types/jest/28.1.1:
+    resolution: {integrity: sha512-C2p7yqleUKtCkVjlOur9BWVA4HgUQmEj/HWCt5WzZ5mLXrWnyIfl0wGuArc+kBXsy0ZZfLp+7dywB4HtSVYGVA==}
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
