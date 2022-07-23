@@ -26,9 +26,9 @@
     "migrate:run": "pnpm run ts scripts/migration-run.ts"
   },
   "dependencies": {
-    "@nestjs/common": "9.0.3",
-    "@nestjs/core": "9.0.3",
-    "@nestjs/platform-express": "9.0.3",
+    "@nestjs/common": "9.0.5",
+    "@nestjs/core": "9.0.5",
+    "@nestjs/platform-express": "9.0.5",
     "reflect-metadata": "0.1.13",
     "rhodash": "2.1.0",
     "rimraf": "3.0.2",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@nestjs/cli": "9.0.0",
     "@nestjs/schematics": "9.0.1",
-    "@nestjs/testing": "9.0.3",
+    "@nestjs/testing": "9.0.5",
     "@tsconfig/strictest": "1.0.1",
     "@types/express": "4.17.13",
     "@types/jest": "28.1.6",
