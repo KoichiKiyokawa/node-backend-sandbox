@@ -33,7 +33,7 @@
     "rhodash": "2.1.0",
     "rimraf": "3.0.2",
     "rxjs": "7.5.6",
-    "sqlite3": "5.0.9",
+    "sqlite3": "5.0.10",
     "typeorm": "0.3.7"
   },
   "devDependencies": {
@@ -77,5 +77,5 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "packageManager": "pnpm@7.5.2"
+  "packageManager": "pnpm@7.6.0"
 }
