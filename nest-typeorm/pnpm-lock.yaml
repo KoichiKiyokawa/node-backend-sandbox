@@ -23,7 +23,7 @@ specifiers:
   rhodash: 2.1.0
   rimraf: 3.0.2
   rxjs: 7.5.6
-  sqlite3: 5.0.9
+  sqlite3: 5.0.10
   supertest: 6.2.4
   ts-jest: 28.0.7
   ts-loader: 9.3.1
@@ -41,8 +41,8 @@ dependencies:
   rhodash: 2.1.0
   rimraf: 3.0.2
   rxjs: 7.5.6
-  sqlite3: 5.0.9
-  typeorm: 0.3.7_d6ronsyxwhatir65524riv5ruq
+  sqlite3: 5.0.10
+  typeorm: 0.3.7_5qef22om4kagypx2bxrmdcr6ia
 
 devDependencies:
   '@nestjs/cli': 9.0.0
@@ -4776,8 +4776,8 @@ packages:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: true
 
-  /sqlite3/5.0.9:
-    resolution: {integrity: sha512-e2lEKevUF65UJu4IIuuFytgW7yNMkmCkfyn66jXWeb7OcdHvRo7nXhF+IQ25iW6x2grB0DyKdGCpx8Rd8EkA2Q==}
+  /sqlite3/5.0.10:
+    resolution: {integrity: sha512-xG4XPp7+b/lIlb/acs4XzBmmahI1Qq3Yhy+jZnZJivwB6DXpoOpGR6QinRbsQkHJIvMZyUsJDXouSva/JXcWFA==}
     requiresBuild: true
     peerDependenciesMeta:
       node-gyp:
@@ -5219,7 +5219,7 @@ packages:
   /typedarray/0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  /typeorm/0.3.7_d6ronsyxwhatir65524riv5ruq:
+  /typeorm/0.3.7_5qef22om4kagypx2bxrmdcr6ia:
     resolution: {integrity: sha512-MsPJeP6Zuwfe64c++l80+VRqpGEGxf0CkztIEnehQ+CMmQPSHjOnFbFxwBuZ2jiLqZTjLk2ZqQdVF0RmvxNF3Q==}
     engines: {node: '>= 12.9.0'}
     hasBin: true
@@ -5290,7 +5290,7 @@ packages:
       mkdirp: 1.0.4
       reflect-metadata: 0.1.13
       sha.js: 2.4.11
-      sqlite3: 5.0.9
+      sqlite3: 5.0.10
       ts-node: 10.9.1_tdn3ypgnfy6bmey2q4hu5jonwi
       tslib: 2.4.0
       uuid: 8.3.2
