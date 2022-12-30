@@ -7,6 +7,11 @@ import { UserService } from './user.service';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
+  @Query(() => [User])
+  async users() {
+    return this.userService.findMany();
+  }
+
   @Query(() => User)
   async user(@Args('id') id: string) {
     return this.userService.findOne(id);
