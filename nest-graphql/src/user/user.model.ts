@@ -7,4 +7,7 @@ export class User {
 
   @Field({ description: 'ユーザー名' })
   name!: string;
+
+  @Field({ description: 'メールアドレス' })
+  email!: string;
 }
