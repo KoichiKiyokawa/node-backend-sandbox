@@ -1,10 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
-@ObjectType()
+@ObjectType({ description: 'ユーザー' })
 export class User {
   @Field()
   id!: string;
 
-  @Field()
+  @Field({ description: 'ユーザー名' })
   name!: string;
 }
