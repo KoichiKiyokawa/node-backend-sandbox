@@ -39,4 +39,22 @@ describe("UserRepository", () => {
       },
     ])
   })
+
+  it.each([...Array(1000)].map((_, i) => i))("findAll each %i", async (i) => {
+    await mockPrisma.user.create({
+      data: {
+        id: i,
+        email: `user${i}@example.com`,
+      },
+    })
+
+    const userRepo = new UserRepository(mockPrisma)
+    expect(await userRepo.findAll()).toStrictEqual([
+      {
+        id: i,
+        email: `user${i}@example.com`,
+        name: null,
+      },
+    ])
+  })
 })
