@@ -17,9 +17,9 @@ export function usePrismaTest() {
       db
         .$transaction(async (tx) => {
           global.mockPrisma = tx as PrismaClient
-          resolve()
           return new Promise((_, reject) => {
             onEnd = reject
+            resolve()
           })
         })
         .catch(() => null)
