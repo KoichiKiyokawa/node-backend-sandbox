@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "types": ["vitest/globals"]
+  }
+}
