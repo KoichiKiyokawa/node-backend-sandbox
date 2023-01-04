@@ -54,16 +54,19 @@ export const get{{inputs.name|pascal}}RepositoryForTest = (mockDB: PrismaClient)
 import { usePrismaTest } from '~/../test/use-prisma-test'
 import { get{{- inputs.name | pascal -}}RepositoryForTest } from "./{{ inputs.name | kebab }}.repository"
 
-describe("{{ inputs.name | camel -}}Repository", () => {
-  const mockDB = usePrismaTest()
-  it("findAll", async () => {
-    await mockDB.{{inputs.name|camel}}.create({ data: {/* dummy data */}})
-    const {{ inputs.name | camel -}}Repository = get{{- inputs.name | pascal -}}RepositoryForTest(mockDB)
-    expect(await {{ inputs.name | camel -}}Repository.findAll()).toStrictEqual([
-      {/* dummy data */}
-    ])
-  })
-})
+describe("{{inputs.name | pascal}}Repository", () => {
+  it("findAll", () =>
+    usePrismaTest(async (mockDB) => {
+      await mockDB.{{inputs.name | camel}}.create({
+        data: {/* dummy data */}
+      });
+      const {{inputs.name|camel}}Repository = get{{inputs.name | pascal}}RepositoryForTest(mockDB)
+      expect(await {{inputs.name|camel}}Repository.findAll()).toStrictEqual([
+        {/* dummy data */}
+      ]);
+    }));
+});
+
 
 ```
 

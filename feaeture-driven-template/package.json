@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": " vitest",
+    "test": "vitest",
     "lint": "eslint . --ext .ts && prettier --check .",
     "lint:fix": "eslint . --ext .ts --fix && prettier --write .",
     "seed": "node -r @swc-node/register prisma/seed.ts",
