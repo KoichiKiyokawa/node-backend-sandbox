@@ -11,5 +11,8 @@ export default defineConfig({
   test: {
     globals: true,
     globalSetup: "./test/setup.ts",
+    coverage: {
+      provider: "c8",
+    },
   },
 });

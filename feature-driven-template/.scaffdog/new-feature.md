@@ -46,7 +46,7 @@ class {{pascal}}Repository {
   }
 }
 
-export const {{camel}}Repository = new {{pascal}}Repository(db)
+export const {{camel}}Repository = new {{pascal}}Repository(prisma)
 export const get{{pascal}}RepositoryForTest = (mockDB: PrismaClient) => new {{pascal}}Repository(mockDB);
 
 ```

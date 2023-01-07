@@ -3,7 +3,7 @@ import { prisma } from "~/lib/db";
 
 export function setup() {
   console.log("setup");
-  // process.env.DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/test";
+  process.env.DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/test";
   execSync("pnpm prisma db push --force-reset", { stdio: "inherit" });
 }
 

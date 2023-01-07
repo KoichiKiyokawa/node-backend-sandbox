@@ -7,10 +7,6 @@ class RoomRepository {
   find(id: number): Promise<Room> {
     return this.db.room.findUniqueOrThrow({ where: { id } });
   }
-
-  findAllByUserId(userId: number): Promise<Room[]> {
-    return this.db.user.findUniqueOrThrow({ where: { id: userId } }).joiningRooms();
-  }
 }
 
 export const roomRepository = new RoomRepository(prisma);
