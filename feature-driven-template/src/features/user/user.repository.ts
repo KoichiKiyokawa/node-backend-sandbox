@@ -2,11 +2,7 @@ import { prisma } from "~/lib/db";
 import type { PrismaClient, User } from "@prisma/client";
 
 class UserRepository {
-  private readonly db: PrismaClient;
-
-  constructor(db: PrismaClient) {
-    this.db = db;
-  }
+  constructor(private readonly db: PrismaClient) {}
 
   findAll(): Promise<User[]> {
     return this.db.user.findMany();
