@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "prepare": "prisma generate",
     "dev": "NODE_ENV=develop tsx watch src/index.ts",
     "build": "vite build",
     "test": "vitest --mode test",
