@@ -1,0 +1,40 @@
+name: feature-driven-template
+on:
+  push:
+    paths:
+      - feature-driven-template/**
+      - .github/workflows/feature-driven-template.yml
+    branches:
+      - main
+  pull_request:
+    paths:
+      - feature-driven-template/**
+      - .github/workflows/feature-driven-template.yml
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: feature-driven-template
+    strategy:
+      matrix:
+        node-version:
+          - 16.x
+          - 18.x
+    steps:
+      - uses: actions/checkout@v3
+      - run: corepack enable pnpm
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: feature-driven-template/pnpm-lock.yaml
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm tsc --noEmit
+      - run: pnpm build
+      - run: docker compose up db -d
+      - run: pnpm test
