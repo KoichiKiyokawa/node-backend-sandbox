@@ -18,7 +18,7 @@ specifiers:
   eslint-import-resolver-typescript: 3.5.2
   eslint-plugin-import: 2.26.0
   express: 4.18.2
-  prettier: 2.8.1
+  prettier: 2.8.2
   prisma: 4.8.0
   scaffdog: 2.4.0
   tsx: 3.12.1
@@ -46,7 +46,7 @@ devDependencies:
   eslint-config-prettier: 8.6.0_eslint@8.31.0
   eslint-import-resolver-typescript: 3.5.2_ol7jqilc3wemtdbq3nzhywgxq4
   eslint-plugin-import: 2.26.0_cxu27kyieece4tnvunezm4whiq
-  prettier: 2.8.1
+  prettier: 2.8.2
   prisma: 4.8.0
   scaffdog: 2.4.0
   tsx: 3.12.1
@@ -3197,8 +3197,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier/2.8.1:
-    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+  /prettier/2.8.2:
+    resolution: {integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

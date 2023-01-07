@@ -1,4 +1,4 @@
-FROM node:18.12.1 AS builder
+FROM node:18.13.0 AS builder
 WORKDIR /workspace
 COPY package.json pnpm-lock.yaml ./
 RUN corepack enable pnpm && pnpm install
