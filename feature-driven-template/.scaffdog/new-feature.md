@@ -7,61 +7,63 @@ questions:
   name: "Please input the feature name."
 ---
 
+
+# Variables
+- kebab: {{inputs.name|kebab}}
+- pascal: {{inputs.name|pascal}}
+- camel: {{inputs.name|camel}}
+
 # index.ts
 ```ts
-import '~/features/{{inputs.name|kebab}}/{{inputs.name|kebab}}.route'
+import '~/features/{{kebab}}/{{kebab}}.route'
 {{ read output.abs }}
 ```
 
-# `features/{{ inputs.name | kebab }}/{{ inputs.name | kebab }}.route.ts`
+# `features/{{ kebab }}/{{ kebab }}.route.ts`
 
 ```ts
 import { app } from "~/lib/app"
-import { {{ inputs.name | snake -}}Service } from "./{{ inputs.name | kebab }}.service"
+import { {{ camel }}Service } from "./{{ kebab }}.service"
 
-app.get("/{{ inputs.name | plur 2 }}", async (req, res) => {
-  res.json(await {{ inputs.name | camel -}}Service.findAll())
+app.get("/{{ plur 2 }}", async (req, res) => {
+  res.json(await {{ camel }}Service.findAll())
 })
 
 ```
 
-# `features/{{ inputs.name | kebab }}/{{ inputs.name | kebab }}.repository.ts`
+# `features/{{ kebab }}/{{ kebab }}.repository.ts`
 
 ```ts
 import { db } from "~/lib/db"
-import type { PrismaClient, {{inputs.name|pascal}} } from '@prisma/client'
+import type { PrismaClient, {{pascal}} } from '@prisma/client'
 
-class {{ inputs.name | pascal -}}Repository {
-  private readonly db: PrismaClient;
+class {{ pascal }}Repository {
+  constructor(private readonly db: PrismaClient) {}
 
-  constructor(db: PrismaClient) {
-    this.db = db;
-  }
-
-  findAll(): Promise<{{inputs.name|pascal}}[]> {
-    return this.db.{{inputs.name|camel}}.findMany()
+  findAll(): Promise<{{pascal}}[]> {
+    return this.db.{{camel}}.findMany()
   }
 }
 
-export const {{ inputs.name | camel -}}Repository = new {{ inputs.name | pascal -}}Repository(db)
-export const get{{inputs.name|pascal}}RepositoryForTest = (mockDB: PrismaClient) => new {{inputs.name|pascal}}Repository(mockDB);
+export const {{ camel }}Repository = new {{ pascal }}Repository(db)
+export const get{{pascal}}RepositoryForTest = (mockDB: PrismaClient) => new {{pascal}}Repository(mockDB);
 
 ```
 
-# `features/{{ inputs.name | kebab }}/{{ inputs.name | kebab }}.repository.test.ts`
+# `features/{{ kebab }}/{{ kebab }}.repository.test.ts`
 
 ```ts
 import { usePrismaTest } from '~/../test/use-prisma-test'
-import { get{{- inputs.name | pascal -}}RepositoryForTest } from "./{{ inputs.name | kebab }}.repository"
+import { get{{ pascal }}RepositoryForTest } from "./{{ kebab }}.repository"
 
-describe("{{inputs.name | pascal}}Repository", () => {
+describe("{{pascal}}Repository", () => {
   it("findAll", () =>
     usePrismaTest(async (mockDB) => {
-      await mockDB.{{inputs.name | camel}}.create({
+      await mockDB.{{camel}}.create({
         data: {/* dummy data */}
       });
-      const {{inputs.name|camel}}Repository = get{{inputs.name | pascal}}RepositoryForTest(mockDB)
-      expect(await {{inputs.name|camel}}Repository.findAll()).toStrictEqual([
+      const {{camel}}Repository = get{{pascal}}RepositoryForTest(mockDB)
+      expect(await {{camel}}Repository.findAll()).toStrictEqual([
         {/* dummy data */}
       ]);
     }));
@@ -70,33 +72,33 @@ describe("{{inputs.name | pascal}}Repository", () => {
 
 ```
 
-# `features/{{ inputs.name | kebab }}/{{ inputs.name | kebab }}.service.ts`
+# `features/{{ kebab }}/{{ kebab }}.service.ts`
 
 ```ts
-import { {{ inputs.name | camel -}}Repository } from "./{{ inputs.name | kebab }}.repository"
+import { {{ camel }}Repository } from "./{{ kebab }}.repository"
 
-class {{ inputs.name | pascal -}}Service {
+class {{ pascal }}Service {
   findAll() {
-    return {{ inputs.name | camel -}}Repository.findAll()
+    return {{ camel }}Repository.findAll()
   }
 }
 
-export const {{inputs.name | camel}}Service = new {{ inputs.name | pascal}}Service()
+export const {{camel}}Service = new {{ pascal}}Service()
 ```
 
-# `features/{{ inputs.name | kebab }}/{{ inputs.name | kebab }}.service.test.ts`
+# `features/{{ kebab }}/{{ kebab }}.service.test.ts`
 
 ```ts
 import { vi } from "vitest"
-import { {{inputs.name|camel}}Repository } from "./{{inputs.name|kebab}}.repository"
-import { {{inputs.name|camel}}Service } from "./{{inputs.name|kebab}}.service"
+import { {{camel}}Repository } from "./{{kebab}}.repository"
+import { {{camel}}Service } from "./{{kebab}}.service"
 
-describe("{{inputs.name|pascal}}", () => {
+describe("{{pascal}}", () => {
   it("findAll", async () => {
-    vi.spyOn({{inputs.name|camel}}Repository, "findAll").mockImplementation(async () => [
+    vi.spyOn({{camel}}Repository, "findAll").mockImplementation(async () => [
       {/* dummy data */}
     ])
-    expect(await {{inputs.name|camel}}Service.findAll()).toStrictEqual([
+    expect(await {{camel}}Service.findAll()).toStrictEqual([
       {/* dummy data */}
     ])
   })
