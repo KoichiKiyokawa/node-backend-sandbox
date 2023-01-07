@@ -7,37 +7,38 @@ questions:
   name: "Please input the feature name."
 ---
 
-
 # Variables
+
 - kebab: {{inputs.name|kebab}}
 - pascal: {{inputs.name|pascal}}
 - camel: {{inputs.name|camel}}
 
 # index.ts
-```ts
+
+```typescript
 import '~/features/{{kebab}}/{{kebab}}.route'
 {{ read output.abs }}
 ```
 
-# `features/{{ kebab }}/{{ kebab }}.route.ts`
+# `features/{{kebab}}/{{kebab}}.route.ts`
 
-```ts
-import { app } from "~/lib/app"
-import { {{ camel }}Service } from "./{{ kebab }}.service"
+```typescript
+import {app} from "~/lib/app"
+import { {{camel}}Service } from "./{{kebab}}.service"
 
 app.get("/{{ plur 2 }}", async (req, res) => {
-  res.json(await {{ camel }}Service.findAll())
+  res.json(await {{camel}}Service.findAll())
 })
 
 ```
 
-# `features/{{ kebab }}/{{ kebab }}.repository.ts`
+# `features/{{kebab}}/{{kebab}}.repository.ts`
 
-```ts
-import { db } from "~/lib/db"
+```typescript
+import {db} from "~/lib/db"
 import type { PrismaClient, {{pascal}} } from '@prisma/client'
 
-class {{ pascal }}Repository {
+class {{pascal}}Repository {
   constructor(private readonly db: PrismaClient) {}
 
   findAll(): Promise<{{pascal}}[]> {
@@ -45,16 +46,16 @@ class {{ pascal }}Repository {
   }
 }
 
-export const {{ camel }}Repository = new {{ pascal }}Repository(db)
+export const {{camel}}Repository = new {{pascal}}Repository(db)
 export const get{{pascal}}RepositoryForTest = (mockDB: PrismaClient) => new {{pascal}}Repository(mockDB);
 
 ```
 
-# `features/{{ kebab }}/{{ kebab }}.repository.test.ts`
+# `features/{{kebab}}/{{kebab}}.repository.test.ts`
 
-```ts
-import { usePrismaTest } from '~/../test/use-prisma-test'
-import { get{{ pascal }}RepositoryForTest } from "./{{ kebab }}.repository"
+```typescript
+import {usePrismaTest} from '~/../test/use-prisma-test'
+import { get{{pascal}}RepositoryForTest } from "./{{kebab}}.repository"
 
 describe("{{pascal}}Repository", () => {
   it("findAll", () =>
@@ -72,24 +73,24 @@ describe("{{pascal}}Repository", () => {
 
 ```
 
-# `features/{{ kebab }}/{{ kebab }}.service.ts`
+# `features/{{kebab}}/{{kebab}}.service.ts`
 
-```ts
-import { {{ camel }}Repository } from "./{{ kebab }}.repository"
+```typescript
+import { {{camel}}Repository } from "./{{kebab}}.repository"
 
-class {{ pascal }}Service {
+class {{pascal}}Service {
   findAll() {
-    return {{ camel }}Repository.findAll()
+    return {{camel}}Repository.findAll()
   }
 }
 
 export const {{camel}}Service = new {{ pascal}}Service()
 ```
 
-# `features/{{ kebab }}/{{ kebab }}.service.test.ts`
+# `features/{{kebab}}/{{kebab}}.service.test.ts`
 
-```ts
-import { vi } from "vitest"
+```typescript
+import {vi} from "vitest"
 import { {{camel}}Repository } from "./{{kebab}}.repository"
 import { {{camel}}Service } from "./{{kebab}}.service"
 

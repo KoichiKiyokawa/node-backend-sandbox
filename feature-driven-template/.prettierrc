@@ -1,4 +1,4 @@
 {
   "printWidth": 100,
-  "pluginSearchDirs": ["."]
+  "pluginSearchDirs": ["./node_modules"]
 }

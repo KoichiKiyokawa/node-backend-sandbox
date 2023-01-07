@@ -11,7 +11,7 @@ globals:
   expect: false
   beforeEach: false
   afterEach: false
-  
+
 parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaVersion: latest
@@ -27,7 +27,7 @@ rules:
   import/prefer-default-export: off
   import/no-default-export: error
   class-methods-use-this: off
-  import/no-extraneous-dependencies: [off, {"devDependencies": ["**/*.test.ts"]}]
+  import/no-extraneous-dependencies: [off, { "devDependencies": ["**/*.test.ts"] }]
   no-unused-vars: off
   "@typescript-eslint/no-unused-vars": ["error"]
   no-useless-constructor: off
