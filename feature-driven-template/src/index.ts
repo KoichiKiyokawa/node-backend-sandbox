@@ -1,3 +1,4 @@
+import "~/features/room/room.route";
 import "~/features/user/user.route";
 import { app } from "~/lib/app";
 

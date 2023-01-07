@@ -1,13 +1,13 @@
-import { db } from "~/lib/db";
+import { prisma } from "~/lib/db";
 
 async function seed() {
   const users = await Promise.all([
-    db.user.create({ data: { name: "user1", email: "user1@example.com" } }),
-    db.user.create({ data: { name: "user2", email: "user2@example.com" } }),
-    db.user.create({ data: { name: "user3", email: "user3@example.com" } }),
+    prisma.user.create({ data: { name: "user1", email: "user1@example.com" } }),
+    prisma.user.create({ data: { name: "user2", email: "user2@example.com" } }),
+    prisma.user.create({ data: { name: "user3", email: "user3@example.com" } }),
   ]);
 
-  const room = await db.room.create({
+  const room = await prisma.room.create({
     data: {
       name: "room1",
       users: {
@@ -16,7 +16,7 @@ async function seed() {
     },
   });
 
-  await db.message.createMany({
+  await prisma.message.createMany({
     data: [
       { roomId: room.id, text: "message1", userId: users[0].id },
       { roomId: room.id, text: "message2", userId: users[1].id },

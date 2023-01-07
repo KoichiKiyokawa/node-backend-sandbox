@@ -23,10 +23,10 @@ import '~/features/{{kebab}}/{{kebab}}.route'
 # `features/{{kebab}}/{{kebab}}.route.ts`
 
 ```typescript
-import {app} from "~/lib/app"
+import { app } from "~/lib/app"
 import { {{camel}}Service } from "./{{kebab}}.service"
 
-app.get("/{{ plur 2 }}", async (req, res) => {
+app.get("/{{ inputs.name | plur 2 }}", async (req, res) => {
   res.json(await {{camel}}Service.findAll())
 })
 
@@ -35,7 +35,7 @@ app.get("/{{ plur 2 }}", async (req, res) => {
 # `features/{{kebab}}/{{kebab}}.repository.ts`
 
 ```typescript
-import {db} from "~/lib/db"
+import { prisma } from "~/lib/db"
 import type { PrismaClient, {{pascal}} } from '@prisma/client'
 
 class {{pascal}}Repository {
@@ -54,7 +54,7 @@ export const get{{pascal}}RepositoryForTest = (mockDB: PrismaClient) => new {{pa
 # `features/{{kebab}}/{{kebab}}.repository.test.ts`
 
 ```typescript
-import {usePrismaTest} from '~/../test/use-prisma-test'
+import { usePrismaTest } from '~/../test/use-prisma-test'
 import { get{{pascal}}RepositoryForTest } from "./{{kebab}}.repository"
 
 describe("{{pascal}}Repository", () => {
@@ -90,7 +90,7 @@ export const {{camel}}Service = new {{ pascal}}Service()
 # `features/{{kebab}}/{{kebab}}.service.test.ts`
 
 ```typescript
-import {vi} from "vitest"
+import { vi } from "vitest"
 import { {{camel}}Repository } from "./{{kebab}}.repository"
 import { {{camel}}Service } from "./{{kebab}}.service"
 
