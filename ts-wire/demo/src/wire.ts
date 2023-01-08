@@ -13,7 +13,3 @@ export const providers = [
   FooService,
   FooController,
 ]
-
-export function bootstrap(...leaves: unknown[]) {
-  console.log(leaves)
-}
