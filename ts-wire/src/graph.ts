@@ -171,11 +171,7 @@ class DependencyGraphNode {
     return {
       name: this.getName(),
       initializer: `new ${this.providerIdentifier.getText()}(${this.dependencies
-        .map((d) =>
-          d.kind === "class"
-            ? camelize(d.providerIdentifier.getText())
-            : d.providerIdentifier.getText()
-        )
+        .map((d) => d.getName())
         .join(", ")})`,
     }
   }
