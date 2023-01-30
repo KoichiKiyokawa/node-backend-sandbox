@@ -1,0 +1,1 @@
+export { createPostSchema } from "./post"

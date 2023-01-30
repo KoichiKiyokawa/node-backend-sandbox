@@ -1,0 +1,8 @@
+{
+  "name": "project",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter ./apps/server run start:dev",
+    "build:packages": "pnpm --filter ./packages/** run build"
+  }
+}
