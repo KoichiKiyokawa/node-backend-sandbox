@@ -3,7 +3,6 @@
     "outDir": "dist",
     "strict": true,
     "declaration": true,
-    "skipLibCheck": true,
-    "baseUrl": "."
+    "skipLibCheck": true
   }
 }

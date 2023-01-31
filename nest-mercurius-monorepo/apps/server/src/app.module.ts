@@ -8,6 +8,7 @@ import { PostModule } from './features/post/post.module';
     GraphQLModule.forRoot<MercuriusDriverConfig>({
       driver: MercuriusDriver,
       graphiql: true,
+      autoSchemaFile: true,
     }),
     PostModule,
   ],

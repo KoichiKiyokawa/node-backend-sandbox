@@ -1,8 +1,11 @@
 {
+  "version": "0.0.1",
   "name": "@project/zod-schemas",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "private": true,
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist && tsc"
   },

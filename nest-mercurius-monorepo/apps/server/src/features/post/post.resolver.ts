@@ -5,9 +5,9 @@ import { createPostSchema } from '@project/zod-schemas';
 
 class CreatePostDto extends createZodDto(createPostSchema) {}
 
-@Resolver()
+@Resolver(() => Post)
 export class PostResolver {
-  @Query(() => Post)
+  @Query(() => Post, { description: 'Get a post by id' })
   post(@Args('id', { type: () => ID }) id: number) {
     return null;
   }
@@ -17,7 +17,8 @@ export class PostResolver {
     return null;
   }
 
-  @Mutation()
+  // NOTE: CreatePostDtoには@Fieldデコレータがついていないので、GraphQLのスキーマに反映できない...
+  @Mutation(() => Post)
   createPost(@Args('input') input: CreatePostDto) {
     console.log({ input });
     return null;
