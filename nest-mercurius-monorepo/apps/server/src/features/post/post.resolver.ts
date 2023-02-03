@@ -1,9 +1,6 @@
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CreatePostInput } from './dto/create-post.input';
 import { Post } from './models/post.model';
-import { createZodDto } from '@project/zod-nestjs';
-import { createPostSchema } from '@project/zod-schemas';
-
-class CreatePostDto extends createZodDto(createPostSchema) {}
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -17,9 +14,8 @@ export class PostResolver {
     return null;
   }
 
-  // NOTE: CreatePostDtoには@Fieldデコレータがついていないので、GraphQLのスキーマに反映できない...
   @Mutation(() => Post)
-  createPost(@Args('input') input: CreatePostDto) {
+  createPost(@Args('input') input: CreatePostInput) {
     console.log({ input });
     return null;
   }
