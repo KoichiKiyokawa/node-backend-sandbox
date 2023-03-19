@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rspack build --watch",
+    "dev": "nodemon --watch 'src' --ext ts --exec 'rspack build --mode development && node dist | pino-pretty'",
     "build": "rspack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@rspack/cli": "^0.1.0"
+    "@rspack/cli": "0.1.1",
+    "nodemon": "2.0.21",
+    "pino-pretty": "10.0.0"
   },
   "dependencies": {
     "fastify": "^4.14.1",

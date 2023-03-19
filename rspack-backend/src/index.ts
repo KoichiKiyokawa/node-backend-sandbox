@@ -1,5 +1,7 @@
-import { createYoga } from "graphql-yoga"
+import { createSchema, createYoga } from "graphql-yoga"
 import fastify, { FastifyRequest, FastifyReply } from "fastify"
+
+const isDev = process.env.NODE_ENV !== "production"
 
 // This is the fastify instance you have created
 const app = fastify({ logger: true })
@@ -15,7 +17,15 @@ const yoga = createYoga<{
     warn: (...args) => args.forEach((arg) => app.log.warn(arg)),
     error: (...args) => args.forEach((arg) => app.log.error(arg)),
   },
-  graphiql: process.env.NODE_ENV !== "production",
+  graphiql: isDev,
+  schema: createSchema({
+    typeDefs: /* GraphQL */ `
+      type Query {
+        hello: String!
+        foo: Int!
+      }
+    `,
+  }),
 })
 
 /**
