@@ -7,6 +7,7 @@ import { PostModule } from './features/post/post.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<YogaDriverConfig>({
+      autoSchemaFile: 'schema.gql',
       driver: YogaDriver,
     }),
     UserModule,

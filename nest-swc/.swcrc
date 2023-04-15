@@ -4,6 +4,7 @@
   "module": {
     "type": "commonjs"
   },
+  "exclude": ["./src/**/*.spec.ts"],
   "jsc": {
     "target": "es2017",
     "parser": {
