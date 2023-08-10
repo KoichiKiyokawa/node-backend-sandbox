@@ -8,8 +8,6 @@ const errSchema = z.object({
 export const commonErrorResponse = {
   500: {
     description: "Internal Server Error",
-    content: {
-      "application/json": { schema: errSchema },
-    },
+    content: { "application/json": { schema: errSchema } },
   },
 };
