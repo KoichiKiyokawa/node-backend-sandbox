@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite-node --watch schema/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "swagger": "node ui-server.cjs"
+    "swagger": "node swagger.cjs",
+    "redoc": "node redoc.cjs"
   },
   "keywords": [],
   "author": "",
