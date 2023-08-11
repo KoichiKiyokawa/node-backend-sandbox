@@ -14,12 +14,12 @@
   "openapi": "3.1.0",
   "components": {
     "schemas": {
-      "User": {
+      "Post": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "User ID",
+            "description": "Post ID",
             "example": "123"
           },
           "title": {
@@ -37,6 +37,34 @@
           "id",
           "title",
           "content"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User email"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User birthday"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "birthday"
         ]
       }
     },
@@ -57,7 +85,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "$ref": "#/components/schemas/Post"
                   }
                 }
               }
@@ -154,7 +182,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/Post"
                 }
               }
             }
@@ -262,7 +290,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/Post"
                 }
               }
             }
@@ -362,38 +390,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/User"
-                      },
-                      {
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "User ID"
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "User name"
-                          },
-                          "email": {
-                            "type": "string",
-                            "format": "email",
-                            "description": "User email"
-                          },
-                          "birthday": {
-                            "type": "string",
-                            "description": "User birthday"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "name",
-                          "email",
-                          "birthday"
-                        ]
-                      }
-                    ]
+                    "$ref": "#/components/schemas/User"
                   }
                 }
               }
@@ -490,38 +487,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/User"
-                    },
-                    {
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "User ID"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "User name"
-                        },
-                        "email": {
-                          "type": "string",
-                          "format": "email",
-                          "description": "User email"
-                        },
-                        "birthday": {
-                          "type": "string",
-                          "description": "User birthday"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "name",
-                        "email",
-                        "birthday"
-                      ]
-                    }
-                  ]
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -629,38 +595,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/User"
-                    },
-                    {
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "User ID"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "User name"
-                        },
-                        "email": {
-                          "type": "string",
-                          "format": "email",
-                          "description": "User email"
-                        },
-                        "birthday": {
-                          "type": "string",
-                          "description": "User birthday"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "name",
-                        "email",
-                        "birthday"
-                      ]
-                    }
-                  ]
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }

@@ -4,7 +4,7 @@ import { tags } from "../tag";
 
 const postSchema = z
   .object({
-    id: z.string({ description: "User ID" }).openapi({ example: "123" }),
+    id: z.string({ description: "Post ID" }).openapi({ example: "123" }),
     title: z
       .string({ description: "Post title" })
       .openapi({ example: "Title 1" }),
@@ -12,9 +12,9 @@ const postSchema = z
       .string({ description: "Post content" })
       .openapi({ example: "lorem ipsum" }),
   })
-  .openapi("User");
+  .openapi("Post");
 
-registry.register("User", postSchema);
+registry.register("Post", postSchema);
 
 registry.registerPath({
   method: "get",
