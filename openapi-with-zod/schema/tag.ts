@@ -1,4 +1,3 @@
-import { TagObject } from "openapi3-ts/oas31";
 import { OpenApiBuilder } from "openapi3-ts/oas31";
 
 export const Tags = [{ name: "Users" }, { name: "Posts" }] as const;

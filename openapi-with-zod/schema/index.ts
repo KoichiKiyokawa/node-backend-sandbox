@@ -1,8 +1,8 @@
 import { OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
-import.meta.glob("./features/**/*.ts", { eager: true });
+import fs from "fs";
 import { registry } from "./builder";
 import { Tags } from "./tag";
-import fs from "fs";
+import.meta.glob("./features/**/*.ts", { eager: true });
 
 fs.writeFileSync(
   "openapi.json",
