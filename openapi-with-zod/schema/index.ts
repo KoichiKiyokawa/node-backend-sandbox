@@ -1,7 +1,7 @@
 import { OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
 import fs from "fs";
 import { registry } from "./builder";
-import { Tags } from "./tag";
+import { TAGS } from "./tag";
 import.meta.glob("./features/**/*.ts", { eager: true });
 
 fs.writeFileSync(
@@ -12,7 +12,7 @@ fs.writeFileSync(
         title: "My API",
         version: "1.0.0",
       },
-      tags: Object.values(Tags),
+      tags: TAGS.map((tag) => ({ name: tag })),
       openapi: "3.1.0",
     }),
     null,

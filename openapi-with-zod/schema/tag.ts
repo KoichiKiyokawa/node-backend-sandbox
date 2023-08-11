@@ -1,3 +1,3 @@
-export const Tags = [{ name: "Users" }, { name: "Posts" }] as const;
+export const TAGS = ["Users", "Posts"] as const;
 
-export const tags = (...args: (typeof Tags)[number]["name"][]) => args;
+export const tags = (...args: (typeof TAGS)[number][]) => args;
