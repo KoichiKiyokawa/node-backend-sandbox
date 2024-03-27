@@ -7,27 +7,27 @@ settings:
 dependencies:
   '@hono/node-server':
     specifier: ^1.3.3
-    version: 1.3.3
+    version: 1.9.0
   '@hono/zod-openapi':
-    specifier: 0.9.5
-    version: 0.9.5(hono@3.11.10)(zod@3.22.4)
+    specifier: 0.9.9
+    version: 0.9.9(hono@3.12.12)(zod@3.22.4)
   '@prisma/client':
     specifier: 5.7.1
     version: 5.7.1(prisma@5.7.1)
   hono:
-    specifier: 3.11.10
-    version: 3.11.10
+    specifier: 3.12.12
+    version: 3.12.12
 
 devDependencies:
   '@hono/swagger-ui':
-    specifier: 0.2.0
-    version: 0.2.0(hono@3.11.10)
+    specifier: 0.2.1
+    version: 0.2.1(hono@3.12.12)
   '@tsconfig/strictest':
     specifier: ^2.0.2
-    version: 2.0.2
+    version: 2.0.5
   '@types/node':
-    specifier: 20.10.5
-    version: 20.10.5
+    specifier: 20.11.30
+    version: 20.11.30
   prisma:
     specifier: 5.7.1
     version: 5.7.1
@@ -244,39 +244,39 @@ packages:
     dev: true
     optional: true
 
-  /@hono/node-server@1.3.3:
-    resolution: {integrity: sha512-zD+TJvSBb5rqx5KSRlpoxNM3ESC8JU3pdecNZc2nK/TJSt88Ae/ko2nKnzYqX2IDegc+4hxLs8CW92B683C2VQ==}
+  /@hono/node-server@1.9.0:
+    resolution: {integrity: sha512-oJjk7WXBlENeHhWiMqSyxPIZ3Kmf5ZYxqdlcSIXyN8Rn50bNJsPl99G4POBS03Jxh56FdfRJ0SEnC8mAVIiavQ==}
     engines: {node: '>=18.14.1'}
     dev: false
 
-  /@hono/swagger-ui@0.2.0(hono@3.11.10):
-    resolution: {integrity: sha512-ulWqCI+38vTlxxBmOAi5VTOUDa5/7fKHPTwyq00kRUjUxPp3Ej5Cs+B/fvGs5gd3KraArLArkln7sHhb5vODZA==}
+  /@hono/swagger-ui@0.2.1(hono@3.12.12):
+    resolution: {integrity: sha512-wBxVMRe3/v8xH4o6icmwztiIq0DG0s7+jHVMHVUAoFFCWEQNL2iskMmQtrhSDtsFmBZUeUFQUaaJ6Ir6DOmHLA==}
     peerDependencies:
       hono: '*'
     dependencies:
-      hono: 3.11.10
+      hono: 3.12.12
     dev: true
 
-  /@hono/zod-openapi@0.9.5(hono@3.11.10)(zod@3.22.4):
-    resolution: {integrity: sha512-Px8QEIr5RyDeHQn51Ihnwtl//foFvd/F6yBq6o/3pVMUpoV6X4JZ+srgUrOX2VRrInpLVEP/NaroXlfvarwIxA==}
+  /@hono/zod-openapi@0.9.9(hono@3.12.12)(zod@3.22.4):
+    resolution: {integrity: sha512-Icak3c8WKNS1gFDWmYs2zJ7ra3js9lDeAXNPf5h3fa0SnJQcjcCrLaG6EZPPAbW92HRwCDeQt8yA/ZVp17HPFg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=3.11.3'
       zod: 3.*
     dependencies:
       '@asteasolutions/zod-to-openapi': 5.5.0(zod@3.22.4)
-      '@hono/zod-validator': 0.1.11(hono@3.11.10)(zod@3.22.4)
-      hono: 3.11.10
+      '@hono/zod-validator': 0.1.11(hono@3.12.12)(zod@3.22.4)
+      hono: 3.12.12
       zod: 3.22.4
     dev: false
 
-  /@hono/zod-validator@0.1.11(hono@3.11.10)(zod@3.22.4):
+  /@hono/zod-validator@0.1.11(hono@3.12.12)(zod@3.22.4):
     resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
     peerDependencies:
       hono: '>=3.9.0'
       zod: ^3.19.1
     dependencies:
-      hono: 3.11.10
+      hono: 3.12.12
       zod: 3.22.4
     dev: false
 
@@ -320,12 +320,12 @@ packages:
     dependencies:
       '@prisma/debug': 5.7.1
 
-  /@tsconfig/strictest@2.0.2:
-    resolution: {integrity: sha512-jt4jIsWKvUvuY6adJnQJlb/UR7DdjC8CjHI/OaSQruj2yX9/K6+KOvDt/vD6udqos/FUk5Op66CvYT7TBLYO5Q==}
+  /@tsconfig/strictest@2.0.5:
+    resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
     dev: true
 
-  /@types/node@20.10.5:
-    resolution: {integrity: sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==}
+  /@types/node@20.11.30:
+    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -378,8 +378,8 @@ packages:
       resolve-pkg-maps: 1.0.0
     dev: true
 
-  /hono@3.11.10:
-    resolution: {integrity: sha512-vizPp5PfVq5dwgN+EM+8v7RHlvrrEbnpkHtM2GMsl6KICA/MvWcnEMJ5L8SjYPxueB8VJMwc6nzzgKj5Vovp7g==}
+  /hono@3.12.12:
+    resolution: {integrity: sha512-5IAMJOXfpA5nT+K0MNjClchzz0IhBHs2Szl7WFAhrFOsbtQsYmNynFyJRg/a3IPsmCfxcrf8txUGiNShXpK5Rg==}
     engines: {node: '>=16.0.0'}
 
   /openapi3-ts@4.2.1:
