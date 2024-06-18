@@ -1,14 +1,16 @@
 import { z } from "@hono/zod-openapi";
 
 export const PaginationSchema = z.object({
-  per: z.coerce
-    .number()
+  per: z
+    .string()
     .min(0)
-    .default(0)
-    .openapi({ description: "Number of items per page" }),
-  page: z.coerce
-    .number()
+    .openapi({
+      description: "Number of items per page",
+    })
+    .transform(Number),
+  page: z
+    .string()
     .min(0)
-    .default(0)
-    .openapi({ description: "Page number" }),
+    .openapi({ description: "Page number" })
+    .transform(Number),
 });

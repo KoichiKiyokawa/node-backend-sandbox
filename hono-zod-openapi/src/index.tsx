@@ -1,12 +1,13 @@
 import { serve } from "@hono/node-server";
+import { swaggerUI } from "@hono/swagger-ui";
 import { PrismaClient } from "@prisma/client";
 import { MiddlewareHandler } from "hono";
-import { swaggerUI } from "@hono/swagger-ui";
 
-import "./features/user/route";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import "./env";
+import userRoute from "./features/user/route";
 
-import { app } from "./builder";
+const app = new OpenAPIHono();
 
 if (process.env.NODE_ENV === "development") {
   app.doc("/doc", {
@@ -31,6 +32,10 @@ if (process.env.NODE_ENV === "development") {
     );
   });
 }
+
+const routes = app.route("/", userRoute);
+
+export type AppType = typeof routes;
 
 declare module "hono" {
   interface ContextVariableMap {
