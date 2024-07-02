@@ -11,7 +11,7 @@ specifiers:
   typescript: 4.9.4
 
 dependencies:
-  hono: 3.0.0
+  hono: 3.12.12
   next: 13.1.2_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -189,8 +189,8 @@ packages:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
-  /hono/3.0.0:
-    resolution: {integrity: sha512-OBWEvcRydCOLdOiazqOmKy8PXciR8uIyUM9HpmXot7UmwNBGOdEJvTrVRIgjV603w+go6cTXBOvFiQClSABT6Q==}
+  /hono/3.12.12:
+    resolution: {integrity: sha512-5IAMJOXfpA5nT+K0MNjClchzz0IhBHs2Szl7WFAhrFOsbtQsYmNynFyJRg/a3IPsmCfxcrf8txUGiNShXpK5Rg==}
     engines: {node: '>=16.0.0'}
     dev: false
 
