@@ -5,7 +5,7 @@ import route from "./route";
 it("GET /users", async () => {
   const result = testClient(route).users.$get({
     // FIXME: page and page should be optional
-    query: { page: "0", per: "10" },
+    query: { page: "0", per: "50" },
   });
   expect(result).toMatchInlineSnapshot();
 });
