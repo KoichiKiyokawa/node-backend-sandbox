@@ -32,7 +32,7 @@ specifiers:
   ts-jest: ^26.5.4
   ts-loader: ^8.0.18
   ts-node: ^9.1.1
-  tsconfig-paths: ^3.9.0
+  tsconfig-paths: ^4.0.0
   tsx: 3.12.1
   typescript: ^4.2.3
 
@@ -70,7 +70,7 @@ devDependencies:
   ts-jest: 26.5.6_rnfpnlbz3wqspag7uftsmccrvy
   ts-loader: 8.4.0_typescript@4.7.4
   ts-node: 9.1.1_typescript@4.7.4
-  tsconfig-paths: 3.14.1
+  tsconfig-paths: 4.1.2
   tsx: 3.12.1
   typescript: 4.7.4
 
@@ -280,7 +280,7 @@ packages:
       convert-source-map: 1.8.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
-      json5: 2.2.1
+      json5: 2.2.3
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
@@ -4946,6 +4946,12 @@ packages:
     hasBin: true
     dev: true
 
+  /json5/2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dev: true
+
   /jsonc-parser/3.0.0:
     resolution: {integrity: sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==}
     dev: true
@@ -5033,7 +5039,7 @@ packages:
     dependencies:
       big.js: 5.2.2
       emojis-list: 3.0.0
-      json5: 2.2.1
+      json5: 2.2.3
     dev: true
 
   /locate-path/5.0.0:
@@ -6831,6 +6837,15 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-paths/4.1.2:
+    resolution: {integrity: sha512-uhxiMgnXQp1IR622dUXI+9Ehnws7i/y6xvpZB9IbUVOPy0muvdvgXeZOn88UcGPiT98Vp3rJPTa8bFoalZ3Qhw==}
+    engines: {node: '>=6'}
+    dependencies:
+      json5: 2.2.3
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
