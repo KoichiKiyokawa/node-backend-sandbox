@@ -1,13 +1,23 @@
 import { serve } from "@hono/node-server";
 import { swaggerUI } from "@hono/swagger-ui";
 import { PrismaClient } from "@prisma/client";
-import { MiddlewareHandler } from "hono";
 
 import { OpenAPIHono } from "@hono/zod-openapi";
 import "./env";
 import userRoute from "./features/user/route";
 
 const app = new OpenAPIHono();
+
+declare module "hono" {
+  interface ContextVariableMap {
+    db: PrismaClient;
+  }
+}
+
+app.use(async (c, next) => {
+  c.set("db", new PrismaClient());
+  await next();
+});
 
 if (process.env.NODE_ENV === "development") {
   app.doc("/doc", {
@@ -36,17 +46,5 @@ if (process.env.NODE_ENV === "development") {
 const routes = app.route("/", userRoute);
 
 export type AppType = typeof routes;
-
-declare module "hono" {
-  interface ContextVariableMap {
-    db: PrismaClient;
-  }
-}
-
-const dbMiddleware: MiddlewareHandler = async (c, next) => {
-  c.set("db", new PrismaClient());
-  await next();
-};
-app.use(dbMiddleware);
 
 serve(app);

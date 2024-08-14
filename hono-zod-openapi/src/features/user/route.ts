@@ -1,10 +1,10 @@
 import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
 import { HTTPException } from "hono/http-exception";
 
-import { getErrorResponses } from "../core/schema/error";
 import { PaginationSchema } from "../core/schema/pagination";
 import { UserCreateSchema, UserSchema } from "./schema";
-import { Hono } from "hono";
+import { getErrorResponses } from "../core/schema/error";
+import { db } from "../../lib/db";
 
 const route = new OpenAPIHono()
   .openapi(
@@ -23,14 +23,15 @@ const route = new OpenAPIHono()
             },
           },
         },
-        // ...getErrorResponses(500),
+        ...getErrorResponses(500),
       },
     }),
     async (c) => {
       const { per, page } = c.req.valid("query");
-      const users = await c.var.db.user.findMany({
+      const users = await db.user.findMany({
         skip: per * page,
         take: per,
+        orderBy: { id: "asc" },
       });
       return c.json({ users }, 200);
     }
@@ -55,7 +56,7 @@ const route = new OpenAPIHono()
       },
     }),
     async (c) => {
-      const user = await c.var.db.user.findUnique({
+      const user = await db.user.findUnique({
         where: { id: c.req.param("id") },
       });
       if (user === null) throw new HTTPException(404);
