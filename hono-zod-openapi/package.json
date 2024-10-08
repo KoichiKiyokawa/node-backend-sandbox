@@ -5,21 +5,21 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@hono/node-server": "1.12.0",
-    "@hono/zod-openapi": "0.15.3",
-    "@prisma/client": "5.15.1",
-    "hono": "4.5.5",
-    "openapi-react-query": "0.1.2"
+    "@hono/node-server": "1.13.1",
+    "@hono/zod-openapi": "0.16.4",
+    "@prisma/client": "5.20.0",
+    "hono": "4.6.3",
+    "openapi-react-query": "0.2.0"
   },
   "devDependencies": {
-    "@hono/swagger-ui": "0.4.0",
+    "@hono/swagger-ui": "0.4.1",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/node": "20.14.5",
-    "openapi-fetch": "0.11.1",
-    "openapi-typescript": "7.3.0",
-    "prisma": "5.15.1",
-    "tsx": "4.15.6",
-    "typescript": "5.4.5",
-    "vitest": "1.6.0"
+    "@types/node": "22.7.5",
+    "openapi-fetch": "0.12.2",
+    "openapi-typescript": "7.4.1",
+    "prisma": "5.20.0",
+    "tsx": "4.19.1",
+    "typescript": "5.6.2",
+    "vitest": "2.1.2"
   }
 }
