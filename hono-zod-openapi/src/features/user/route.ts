@@ -5,6 +5,7 @@ import { PaginationSchema } from "../core/schema/pagination";
 import { UserCreateSchema, UserSchema } from "./schema";
 import { getErrorResponses } from "../core/schema/error";
 import { db } from "../../lib/db";
+import { setCacheControl } from "../core/header";
 
 const route = new OpenAPIHono()
   .openapi(
@@ -27,6 +28,7 @@ const route = new OpenAPIHono()
       },
     }),
     async (c) => {
+      setCacheControl(c, { private: true, maxAge: 80 });
       const { per, page } = c.req.valid("query");
       const users = await db.user.findMany({
         skip: per * page,
@@ -52,7 +54,7 @@ const route = new OpenAPIHono()
             },
           },
         },
-        // ...getErrorResponses(404, 500),
+        ...getErrorResponses(404, 500),
       },
     }),
     async (c) => {
@@ -82,7 +84,7 @@ const route = new OpenAPIHono()
             },
           },
         },
-        // ...getErrorResponses(500),
+        ...getErrorResponses(500),
       },
     }),
     async (c) => {

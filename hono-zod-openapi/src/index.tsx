@@ -16,6 +16,7 @@ declare module "hono" {
 
 app.use(async (c, next) => {
   c.set("db", new PrismaClient());
+  c.res.headers.set("Cache-Control", "no-store");
   await next();
 });
 

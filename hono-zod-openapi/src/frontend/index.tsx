@@ -10,4 +10,5 @@ const $api = createClient(fetchClient);
 
 export default function App() {
   const { data, error, isPending } = $api.useQuery("get", "/users");
+  const { mutate } = $api.useMutation("post", "/users");
 }
