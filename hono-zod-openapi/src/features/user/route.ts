@@ -2,10 +2,11 @@ import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
 import { HTTPException } from "hono/http-exception";
 
 import { PaginationSchema } from "../core/schema/pagination";
-import { UserCreateSchema, UserSchema } from "./schema";
+import { UserCreateSchema, UserSchema, UserUpdateSchema } from "./schema";
 import { getErrorResponses } from "../core/schema/error";
 import { db } from "../../lib/db";
 import { setCacheControl } from "../core/header";
+import { Prisma } from "@prisma/client";
 
 const route = new OpenAPIHono()
   .openapi(
@@ -90,6 +91,41 @@ const route = new OpenAPIHono()
     async (c) => {
       const user = await c.var.db.user.create({ data: c.req.valid("json") });
       return c.json({ user }, 201);
+    }
+  )
+  .openapi(
+    createRoute({
+      summary: "Update a user",
+      method: "put",
+      path: "/users/{id}",
+      tags: ["User"],
+      request: {
+        body: { content: { "application/json": { schema: UserUpdateSchema } } },
+      },
+      responses: {
+        200: {
+          description: "Update a user",
+          content: {
+            "application/json": {
+              schema: z.object({ user: UserSchema }),
+            },
+          },
+        },
+        ...getErrorResponses(404, 500),
+      },
+    }),
+    async (c) => {
+      const json = c.req.valid("json");
+      const user = await db.user.update({
+        where: { id: c.req.param("id") },
+        data: {
+          name: json.name ?? Prisma.skip,
+          email: json.email ?? Prisma.skip,
+        },
+      });
+      if (user === null) throw new HTTPException(404);
+
+      return c.json({ user }, 200);
     }
   );
 

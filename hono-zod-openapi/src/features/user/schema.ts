@@ -9,3 +9,5 @@ export const UserSchema = z
   .openapi("User");
 
 export const UserCreateSchema = UserSchema.omit({ id: true });
+
+export const UserUpdateSchema = UserCreateSchema.partial();
