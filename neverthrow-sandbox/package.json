@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "4.10.1",
+    "@prisma/client": "4.16.2",
     "neverthrow": "^6.0.0"
   },
   "devDependencies": {
     "@tsconfig/node-lts-strictest-esm": "^18.12.1",
-    "prisma": "4.10.1"
+    "prisma": "4.16.2"
   }
 }
