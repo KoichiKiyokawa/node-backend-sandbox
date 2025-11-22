@@ -1,0 +1,16 @@
+{
+  "name": "elysia-sandbox",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/openapi": "^1.4.11",
+    "elysia": "^1.4.16"
+  }
+}
