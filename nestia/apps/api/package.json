@@ -79,9 +79,9 @@
   "dependencies": {
     "@nestia/core": "^3.2.2",
     "@nestia/fetcher": "^3.2.2",
-    "@nestjs/common": "^10.3.9",
-    "@nestjs/core": "^10.3.9",
-    "@nestjs/platform-express": "^10.3.9",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
     "commander": "10.0.0",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
