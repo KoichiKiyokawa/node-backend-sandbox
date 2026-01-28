@@ -8,7 +8,7 @@ specifiers:
 
 dependencies:
   '@prisma/client': 4.10.1_prisma@4.10.1
-  neverthrow: 6.0.0
+  neverthrow: 6.2.2
 
 devDependencies:
   '@tsconfig/node-lts-strictest-esm': 18.12.1
@@ -42,8 +42,8 @@ packages:
     resolution: {integrity: sha512-LvBLmaC6Q/txTddLc11OeMHF9XjJFzlilkETJuvBlUvHy9pPiMsoH3nxWZM1FMSO53zp4mJP6gzOzxKEq0me7Q==}
     dev: true
 
-  /neverthrow/6.0.0:
-    resolution: {integrity: sha512-kPZKRs4VkdloCGQXPoP84q4sT/1Z+lYM61AXyV8wWa2hnuo5KpPBF2S3crSFnMrOgUISmEBP8Vo/ngGZX60NhA==}
+  /neverthrow/6.2.2:
+    resolution: {integrity: sha512-POR1FACqdK9jH0S2kRPzaZEvzT11wsOxLW520PQV/+vKi9dQe+hXq19EiOvYx7lSRaF5VB9lYGsPInynrnN05w==}
     dev: false
 
   /prisma/4.10.1:

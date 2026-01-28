@@ -14,13 +14,13 @@
   "license": "ISC",
   "devDependencies": {
     "@asteasolutions/zod-to-openapi": "5.5.0",
-    "@types/node": "20.4.9",
-    "express": "4.18.2",
-    "openapi3-ts": "4.1.2",
-    "redoc-express": "2.1.0",
-    "swagger-ui-express": "5.0.0",
-    "typescript": "5.1.6",
-    "vite-node": "0.34.1",
-    "zod": "3.21.4"
+    "@types/node": "20.19.30",
+    "express": "4.22.1",
+    "openapi3-ts": "4.5.0",
+    "redoc-express": "2.1.3",
+    "swagger-ui-express": "5.0.1",
+    "typescript": "5.9.3",
+    "vite-node": "0.34.7",
+    "zod": "3.25.76"
   }
 }
