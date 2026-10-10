@@ -31,7 +31,7 @@
     "@prisma/client": "4.2.1",
     "apollo-server-express": "^3.10.1",
     "graphql": "^16.5.0",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.2.0",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"
   },
@@ -57,7 +57,7 @@
     "ts-loader": "^8.0.18",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "tsx": "3.12.1",
+    "tsx": "3.14.0",
     "typescript": "^4.2.3"
   },
   "jest": {
@@ -80,5 +80,5 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "packageManager": "pnpm@7.22.0"
+  "packageManager": "pnpm@7.33.7"
 }
