@@ -7,15 +7,15 @@
     "test": "DATABASE_URL='file:./test.db' vitest"
   },
   "private": true,
-  "packageManager": "pnpm@7.22.0",
+  "packageManager": "pnpm@7.33.7",
   "dependencies": {
     "@prisma/client": "4.8.0"
   },
   "devDependencies": {
     "@tsconfig/node-lts-strictest-esm": "18.12.1",
     "prisma": "4.8.0",
-    "typescript": "4.9.4",
-    "vite": "4.0.4",
-    "vitest": "0.26.3"
+    "typescript": "4.9.5",
+    "vite": "4.5.14",
+    "vitest": "0.34.6"
   }
 }
