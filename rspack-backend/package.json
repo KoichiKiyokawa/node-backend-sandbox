@@ -12,9 +12,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@rspack/cli": "0.1.1",
-    "nodemon": "2.0.21",
-    "pino-pretty": "10.0.0"
+    "@rspack/cli": "0.7.5",
+    "nodemon": "2.0.22",
+    "pino-pretty": "10.3.1"
   },
   "dependencies": {
     "fastify": "^4.14.1",
