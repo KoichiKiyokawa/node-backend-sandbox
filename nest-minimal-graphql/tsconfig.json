@@ -3,7 +3,7 @@
     "module": "NodeNext",
     "target": "ES2023",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
@@ -12,5 +12,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src", "db", "test", "vite.config.ts"]
 }

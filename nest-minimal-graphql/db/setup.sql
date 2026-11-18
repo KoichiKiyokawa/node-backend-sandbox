@@ -1,11 +1,11 @@
 BEGIN;
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS accounts (
   id text PRIMARY KEY,
-  name text NOT NULL
+  display_name text NOT NULL
 );
 
-INSERT INTO users (id, name)
+INSERT INTO accounts (id, display_name)
 VALUES ('1', 'Ada'), ('2', 'Grace')
 ON CONFLICT (id) DO NOTHING;
 
