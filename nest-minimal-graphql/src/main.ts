@@ -5,13 +5,16 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { NodeAdapter } from "@nestjs/platform-node";
 import { AccountRepository } from "./features/accounts/account.repository.js";
 import { AccountResolver } from "./features/accounts/account.resolver.js";
+import { PasskeyController } from "./features/auth/passkey.controller.js";
+import { Postgres } from "./lib/postgres.js";
 
 const app = await NestFactory.create(
   {
     imports: [
       GraphQLModule.forRoot<ApolloDriverConfig>({ driver: ApolloDriver, autoSchemaFile: true }),
     ],
-    providers: [AccountRepository, AccountResolver],
+    controllers: [PasskeyController],
+    providers: [Postgres, AccountRepository, AccountResolver],
   },
   new NodeAdapter(),
   { logger: ["error"] },

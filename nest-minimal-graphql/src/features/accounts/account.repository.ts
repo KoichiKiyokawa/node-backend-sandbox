@@ -1,8 +1,7 @@
-import { Injectable, Logger, type OnApplicationShutdown } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { eq } from "drizzle-orm";
-import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { pgTable, text } from "drizzle-orm/pg-core";
-import { Pool } from "pg";
+import { Postgres } from "../../lib/postgres.js";
 import { Account } from "./account.js";
 
 const accountsTable = pgTable("accounts", {
@@ -11,27 +10,16 @@ const accountsTable = pgTable("accounts", {
 });
 
 @Injectable()
-export class AccountRepository implements OnApplicationShutdown {
-  private readonly pool: Pool;
-  private readonly db: NodePgDatabase;
-
-  constructor() {
-    const connectionString = process.env.DATABASE_URL;
-    if (!connectionString) throw new Error("DATABASE_URL is required");
-
-    const logger = new Logger(AccountRepository.name);
-    this.pool = new Pool({ connectionString });
-    this.pool.on("error", (error) => logger.error(error));
-    this.db = drizzle({ client: this.pool });
-  }
+export class AccountRepository {
+  constructor(private readonly postgres: Postgres) {}
 
   async findAll(): Promise<Account[]> {
-    const rows = await this.db.select().from(accountsTable).orderBy(accountsTable.id);
+    const rows = await this.postgres.db.select().from(accountsTable).orderBy(accountsTable.id);
     return rows.map(({ id, displayName }) => new Account(id, displayName));
   }
 
   async findById(id: string): Promise<Account | null> {
-    const [row] = await this.db
+    const [row] = await this.postgres.db
       .select()
       .from(accountsTable)
       .where(eq(accountsTable.id, id))
@@ -40,15 +28,11 @@ export class AccountRepository implements OnApplicationShutdown {
   }
 
   async saveDisplayName(account: Account): Promise<Account | null> {
-    const [row] = await this.db
+    const [row] = await this.postgres.db
       .update(accountsTable)
       .set({ displayName: account.displayName })
       .where(eq(accountsTable.id, account.id))
       .returning();
     return row ? new Account(row.id, row.displayName) : null;
-  }
-
-  onApplicationShutdown(): Promise<void> {
-    return this.pool.end();
   }
 }

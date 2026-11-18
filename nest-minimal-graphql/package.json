@@ -10,16 +10,19 @@
     "start": "node dist/main.mjs",
     "test": "pnpm build && vp test run",
     "test:unit": "vp test run src/features/accounts/account.test.ts",
-    "test:integration": "pnpm build && vp test run test/graphql.integration.test.ts"
+    "test:integration": "pnpm build && vp test run test/"
   },
   "dependencies": {
     "@apollo/server": "^5.0.0",
     "@as-integrations/express5": "^1.1.2",
+    "@auth/core": "^0.41.3",
+    "@auth/drizzle-adapter": "^1.11.3",
     "@nestjs/apollo": "^14.2.1",
     "@nestjs/common": "^12.5.1",
     "@nestjs/core": "^12.5.1",
     "@nestjs/graphql": "^14.2.1",
     "@nestjs/platform-node": "^12.5.1",
+    "@simplewebauthn/server": "9.0.3",
     "drizzle-orm": "^0.45.4",
     "graphql": "^16.11.0",
     "pg": "^8.23.1",
@@ -31,6 +34,7 @@
     "@electric-sql/pglite-socket": "^0.2.19",
     "@types/node": "^24.0.0",
     "@types/pg": "^8.23.1",
+    "nid-webauthn-emulator": "^0.2.18",
     "typescript": "~5.9.3",
     "vite-plus": "^1.7.0"
   },

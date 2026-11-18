@@ -47,6 +47,20 @@ mutation {
 }
 ```
 
+## Auth.js でパスキーを登録してログインする
+
+`pnpm db` を起動し、API側のターミナルで `DATABASE_URL` に加えて以下を設定します。既存の PostgreSQL を使う場合は [`db/setup.sql`](db/setup.sql) を再適用して Auth.js のテーブルを作ります。
+
+```sh
+export AUTH_URL='http://localhost:3000'
+export AUTH_SECRET="$(openssl rand -base64 32)"
+pnpm dev
+```
+
+[パスキーのサインイン画面](http://localhost:3000/auth/signin?callbackUrl=%2Fauth%2Fsession) を開き、`passkeys@example.test` などの検証用アドレスを入力して **Sign in with Passkey** を押します。初回はブラウザーでパスキーを登録し、次回は登録したパスキーでログインします。[セッション](http://localhost:3000/auth/session) でログイン状態を確認でき、[サインアウト](http://localhost:3000/auth/signout) でセッションを終了できます。
+
+入力したメールアドレスはパスキーを探すための識別子です。メールによる本人確認は行いません。認証情報とセッションは Auth.js のテーブルに保存します。Auth.js の Passkey Provider は公式に実験的機能として案内されています。[Auth.js の Passkey ガイド](https://authjs.dev/getting-started/providers/passkey)
+
 ## 本番用は同じ Vite Plus ビルドの成果物を起動する
 
 `DATABASE_URL` に使う PostgreSQL の接続先を設定し、`db/setup.sql` を適用しておきます。接続プールは最初のクエリで接続します。[Drizzle の node-postgres 接続](https://orm.drizzle.team/docs/get-started/postgresql-existing)
@@ -64,3 +78,5 @@ HTTP サーバーは NestJS 公式の `NodeAdapter`（`node:http`）です。Gra
 ## ドメインの単体テストと GraphQL の結合テストを実行する
 
 `pnpm test` は両方を実行します。`pnpm test:unit` は `Account` の表示名変更を単独で検証します。`pnpm test:integration` はビルド後、PGlite と API を空きポートで起動し、HTTP 経由で取得・変更・入力エラーを検証します。結合テストではアプリの Resolver、Repository、Drizzle、`pg` をそのまま使い、変更後のDBの値も確認します。[Vite Plus の Test ガイド](https://viteplus.dev/guide/test)
+
+[パスキーの結合テスト](test/passkey.integration.test.ts) は Node.js の仮想認証器で WebAuthn の応答を生成し、HTTP 経由で登録、セッション確認、サインアウト、同じパスキーでの再ログインを検証します。Auth.js と PostgreSQL アダプターは実際のコードを使います。

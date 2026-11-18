@@ -1,30 +1,20 @@
-import { spawn, type ChildProcessByStdio } from "node:child_process";
-import { once } from "node:events";
-import type { Readable } from "node:stream";
 import { afterAll, beforeAll, expect, test } from "vite-plus/test";
 import { startLocalPostgres } from "../db/local.js";
+import { startBuiltApp } from "./start-built-app.js";
 
 let postgres: Awaited<ReturnType<typeof startLocalPostgres>>;
-let app: ChildProcessByStdio<null, Readable, Readable> | undefined;
+let app: Awaited<ReturnType<typeof startBuiltApp>>;
 let graphqlUrl: string;
 
 beforeAll(async () => {
   postgres = await startLocalPostgres();
-  app = spawn(process.execPath, ["dist/main.mjs"], {
-    env: {
-      ...process.env,
-      DATABASE_URL: postgres.connectionString,
-      NODE_ENV: "production",
-      PORT: "0",
-    },
-    stdio: ["ignore", "pipe", "pipe"],
-  });
-  graphqlUrl = await waitForGraphQL(app);
+  app = await startBuiltApp(postgres.connectionString);
+  graphqlUrl = new URL("/graphql", app.url).href;
 }, 15_000);
 
 afterAll(async () => {
   try {
-    if (app?.kill()) await once(app, "exit");
+    await app?.close();
   } finally {
     await postgres?.close();
   }
@@ -88,32 +78,4 @@ async function query(document: string): Promise<unknown> {
   });
   expect(response.status).toBe(200);
   return response.json();
-}
-
-function waitForGraphQL(process: ChildProcessByStdio<null, Readable, Readable>): Promise<string> {
-  return new Promise((resolve, reject) => {
-    let output = "";
-    const timeout = setTimeout(
-      () => reject(new Error(`GraphQL did not start:\n${output}`)),
-      10_000,
-    );
-    const recordOutput = (chunk: Buffer) => {
-      output += chunk.toString();
-      const url = output.match(/GraphQL ready at (http:\/\/\S+\/graphql)/)?.[1];
-      if (url) {
-        clearTimeout(timeout);
-        resolve(url);
-      }
-    };
-    process.stdout.on("data", recordOutput);
-    process.stderr.on("data", recordOutput);
-    process.once("error", (error) => {
-      clearTimeout(timeout);
-      reject(error);
-    });
-    process.once("exit", (code) => {
-      clearTimeout(timeout);
-      reject(new Error(`GraphQL exited (${code}):\n${output}`));
-    });
-  });
 }
