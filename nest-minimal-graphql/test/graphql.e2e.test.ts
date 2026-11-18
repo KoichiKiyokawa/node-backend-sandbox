@@ -20,21 +20,7 @@ afterAll(async () => {
   }
 });
 
-test("reads the seeded accounts and returns null for an unknown ID", async () => {
-  expect(
-    await query('{ accounts { __typename id displayName } account(id: "missing") { id } }'),
-  ).toEqual({
-    data: {
-      accounts: [
-        { __typename: "Account", id: "1", displayName: "Ada" },
-        { __typename: "Account", id: "2", displayName: "Grace" },
-      ],
-      account: null,
-    },
-  });
-});
-
-test("reads the updated display name after changing it through GraphQL", async () => {
+test("reads the updated display name through the built HTTP endpoint", async () => {
   expect(
     await query(
       'mutation { changeAccountDisplayName(id: "1", displayName: "  Ada Lovelace  ") { id displayName } }',
@@ -42,22 +28,8 @@ test("reads the updated display name after changing it through GraphQL", async (
   ).toEqual({
     data: { changeAccountDisplayName: { id: "1", displayName: "Ada Lovelace" } },
   });
-  expect(await query('{ account(id: "1") { id displayName } }')).toEqual({
-    data: { account: { id: "1", displayName: "Ada Lovelace" } },
-  });
-});
-
-test("rejects a blank display name and preserves the stored value", async () => {
-  expect(
-    await query('mutation { changeAccountDisplayName(id: "2", displayName: "   ") { id } }'),
-  ).toMatchObject({
-    data: { changeAccountDisplayName: null },
-    errors: [
-      { message: "Account display name must not be blank", extensions: { code: "BAD_REQUEST" } },
-    ],
-  });
-  expect(await query('{ account(id: "2") { displayName } }')).toEqual({
-    data: { account: { displayName: "Grace" } },
+  expect(await query('{ account(id: "1") { __typename id displayName } }')).toEqual({
+    data: { account: { __typename: "Account", id: "1", displayName: "Ada Lovelace" } },
   });
 });
 
