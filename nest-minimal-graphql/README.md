@@ -1,14 +1,23 @@
 # NestJS minimal GraphQL
 
-`nest new --minimal` と同じ1ファイル構成の GraphQL API です。[`src/main.ts`](src/main.ts) に Code First の Resolver、インメモリの Repository、Module、起動処理を置いています。Nest が `UserRepository` を `UserResolver` のコンストラクターに型で注入します。
+`nest new --minimal` と同じ1ファイル構成の GraphQL API です。[`src/main.ts`](src/main.ts) に Code First の Resolver、Drizzle ORM の Repository、Module、起動処理を置いています。Nest が `UserRepository` を `UserResolver` のコンストラクターに型で注入します。Repository は `pg` の接続プール経由で PostgreSQL を参照します。
 
-## 開発時も Rspack でビルドし、変更時に再起動する
+## PostgreSQL にテーブルとサンプルデータを用意する
 
-Node.js 24.11 以降の 24.x と npm が必要です。
+Node.js 24.11 以降の 24.x、npm、PostgreSQL、`psql` が必要です。以下は `nest_graphql` データベースをローカルに用意した場合の例です。
 
 ```sh
 cd nest-minimal-graphql
+export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/nest_graphql'
+psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/setup.sql
 npm ci
+```
+
+テーブル作成とサンプルデータの投入は [`db/setup.sql`](db/setup.sql) で行います。接続プールが最初に PostgreSQL へ接続するのは GraphQL のクエリを処理するときです。[Drizzle の node-postgres 接続](https://orm.drizzle.team/docs/get-started/postgresql-existing) · [PostgreSQL の `psql` マニュアル](https://www.postgresql.org/docs/current/app-psql.html)
+
+## 開発時も Rspack でビルドし、変更時に再起動する
+
+```sh
 npm run dev
 ```
 

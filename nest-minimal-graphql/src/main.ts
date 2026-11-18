@@ -1,34 +1,54 @@
 import "reflect-metadata";
 import { ApolloDriver, type ApolloDriverConfig } from "@nestjs/apollo";
-import { Injectable, Module } from "@nestjs/common";
+import { Injectable, Logger, Module, type OnApplicationShutdown } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { Args, Field, GraphQLModule, ID, ObjectType, Query, Resolver } from "@nestjs/graphql";
 import { NodeAdapter } from "@nestjs/platform-node";
+import { eq } from "drizzle-orm";
+import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
+import { pgTable, text } from "drizzle-orm/pg-core";
+import { Pool } from "pg";
+
+const usersTable = pgTable("users", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+});
 
 @ObjectType()
 class User {
   @Field(() => ID)
-  readonly id: string;
+  readonly id!: string;
 
   @Field(() => String)
-  readonly name: string;
-
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
+  readonly name!: string;
 }
 
 @Injectable()
-class UserRepository {
-  private readonly users = [new User("1", "Ada"), new User("2", "Grace")];
+class UserRepository implements OnApplicationShutdown {
+  private readonly pool: Pool;
+  private readonly db: NodePgDatabase;
 
-  findAll(): readonly User[] {
-    return this.users;
+  constructor() {
+    const connectionString = process.env.DATABASE_URL;
+    if (!connectionString) throw new Error("DATABASE_URL is required");
+
+    const logger = new Logger(UserRepository.name);
+    this.pool = new Pool({ connectionString });
+    this.pool.on("error", (error) => logger.error(error));
+    this.db = drizzle({ client: this.pool });
   }
 
-  findById(id: string): User | null {
-    return this.users.find((user) => user.id === id) ?? null;
+  async findAll(): Promise<User[]> {
+    return this.db.select().from(usersTable).orderBy(usersTable.id);
+  }
+
+  async findById(id: string): Promise<User | null> {
+    const [user] = await this.db.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
+    return user ?? null;
+  }
+
+  onApplicationShutdown(): Promise<void> {
+    return this.pool.end();
   }
 }
 
@@ -37,12 +57,12 @@ class UserResolver {
   constructor(private readonly repository: UserRepository) {}
 
   @Query(() => [User])
-  users(): readonly User[] {
+  users(): Promise<User[]> {
     return this.repository.findAll();
   }
 
   @Query(() => User, { nullable: true })
-  user(@Args("id", { type: () => ID }) id: string): User | null {
+  user(@Args("id", { type: () => ID }) id: string): Promise<User | null> {
     return this.repository.findById(id);
   }
 }
