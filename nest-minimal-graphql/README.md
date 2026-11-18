@@ -1,6 +1,8 @@
 # NestJS minimal GraphQL
 
-`nest new --minimal` をベースにしたアカウント管理の GraphQL API です。[`src/main.ts`](src/main.ts) に Resolver、Drizzle ORM の Repository、Module、起動処理を置いています。Nest が `AccountRepository` を `AccountResolver` に注入します。[`Account`](src/account.ts) の `changeDisplayName` が表示名の変更を担当し、前後の空白を除き、空白だけの表示名を拒否します。Repository が PostgreSQL に結果を保存します。
+`nest new --minimal` をベースにしたアカウント管理の GraphQL API です。[`src/main.ts`](src/main.ts) でアプリを起動し、[`AppModule`](src/app.module.ts) が GraphQL と [`AccountsModule`](src/features/accounts/accounts.module.ts) を組み合わせます。アカウントのドメイン、Resolver、Repository、単体テストは [`src/features/accounts/`](src/features/accounts/) に置いています。
+
+[`Account`](src/features/accounts/account.ts) の `changeDisplayName` は表示名の前後の空白を除き、空白だけの表示名を拒否します。Nest が Resolver に注入した Repository が、Drizzle で PostgreSQL に結果を保存します。
 
 ## 開発用 PostgreSQL を PGlite で起動する
 

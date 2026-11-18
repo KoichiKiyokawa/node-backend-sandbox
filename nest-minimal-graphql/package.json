@@ -9,7 +9,7 @@
     "build": "vp pack",
     "start": "node dist/main.mjs",
     "test": "pnpm build && vp test run",
-    "test:unit": "vp test run test/account.test.ts",
+    "test:unit": "vp test run src/features/accounts/account.test.ts",
     "test:integration": "pnpm build && vp test run test/graphql.integration.test.ts"
   },
   "dependencies": {

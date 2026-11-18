@@ -1,5 +1,5 @@
 import { expect, test } from "vite-plus/test";
-import { Account, InvalidAccountDisplayNameError } from "../src/account.js";
+import { Account, InvalidAccountDisplayNameError } from "./account.js";
 
 test("trims a display name and preserves internal spaces", () => {
   const account = new Account("1", "  Ada  Lovelace  ");
