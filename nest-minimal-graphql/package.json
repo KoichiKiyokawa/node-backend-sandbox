@@ -1,0 +1,41 @@
+{
+  "name": "nest-minimal-graphql",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db": "node db/local.ts",
+    "dev": "vp pack --watch --on-success \"node dist/main.mjs\"",
+    "check": "vp lint src db test vite.config.ts && tsc --noEmit",
+    "build": "vp pack",
+    "start": "node dist/main.mjs",
+    "test": "pnpm build && vp test run",
+    "test:unit": "vp test run test/account.test.ts",
+    "test:integration": "pnpm build && vp test run test/graphql.integration.test.ts"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@nestjs/apollo": "^14.2.1",
+    "@nestjs/common": "^12.5.1",
+    "@nestjs/core": "^12.5.1",
+    "@nestjs/graphql": "^14.2.1",
+    "@nestjs/platform-node": "^12.5.1",
+    "drizzle-orm": "^0.45.4",
+    "graphql": "^16.11.0",
+    "pg": "^8.23.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "@electric-sql/pglite-socket": "^0.2.19",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.23.1",
+    "typescript": "~5.9.3",
+    "vite-plus": "^1.7.0"
+  },
+  "engines": {
+    "node": "^24.11.0"
+  },
+  "packageManager": "pnpm@11.25.0"
+}
