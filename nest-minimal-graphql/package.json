@@ -2,13 +2,10 @@
   "name": "nest-minimal-graphql",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": "^24.11.0"
-  },
   "scripts": {
-    "dev": "node --watch --import vite-plus/register src/main.ts",
+    "dev": "vp exec nest start --watch",
     "check": "vp lint src && tsc --noEmit",
-    "build": "nest build --builder rspack --rspackPath rspack.config.cjs",
+    "build": "vp exec nest build",
     "start": "node dist/main.js"
   },
   "dependencies": {
@@ -30,5 +27,8 @@
     "typescript": "~5.9.3",
     "vite-plus": "^1.7.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "engines": {
+    "node": "^24.11.0"
   }
 }
