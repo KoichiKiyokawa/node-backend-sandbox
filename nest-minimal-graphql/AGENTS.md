@@ -13,8 +13,9 @@
 - 対象と操作が分かる名前を使います。例は `Account.changeDisplayName()` です。表示名の変更ルールはドメインに置き、Resolver は呼び出しを受け付け、Repository は結果を保存します。
 - ドメインオブジェクトはイミュータブルにします。公開プロパティは `readonly` とし、状態を変更する操作は変更後の新しいインスタンスを返します。`Account.changeDisplayName()` は元の `Account` を保持し、同じIDと新しい表示名を持つ `Account` を返します。
 
-## 機能内の単体テストと結合テストで確認する
+## 単体・結合・E2Eテストで検証する範囲
 
-- ドメインの単体テストは対象の機能に置きます。GraphQL の結合テストは `test/` に置き、管理下の Resolver、Repository、ドメインは実装を使います。
+- ドメインの単体テストと Repository の結合テストは対象の機能に置きます。結合テストは実際の Repository、Drizzle、`pg` を使い、TCP 経由で PGlite に接続します。
 - 状態を変更するドメイン操作の単体テストでは、返された値と、元のインスタンスが保持している値の両方を確認します。
-- `pnpm check` で型とlintを確認し、`pnpm test` でビルド、単体テスト、PGliteを使ったGraphQLの結合テストを実行します。
+- E2Eテストは `test/` に置き、ビルド済みのアプリを起動して、GraphQL と Auth.js を HTTP 経由で検証します。単体・結合・E2Eテストで、プロジェクトが管理する依存には実装を使います。
+- `pnpm check` で型と lint を確認し、`pnpm test` でビルド後にすべてのテストを実行します。

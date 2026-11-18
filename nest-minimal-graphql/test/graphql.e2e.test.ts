@@ -34,17 +34,7 @@ test("reads the seeded accounts and returns null for an unknown ID", async () =>
   });
 });
 
-test("reads an account added directly to PostgreSQL", async () => {
-  await postgres.db.query("INSERT INTO accounts (id, display_name) VALUES ($1, $2)", [
-    "3",
-    "  Katherine  ",
-  ]);
-  expect(await query('{ account(id: "3") { id displayName } }')).toEqual({
-    data: { account: { id: "3", displayName: "Katherine" } },
-  });
-});
-
-test("changes the display name and persists the normalized value", async () => {
+test("reads the updated display name after changing it through GraphQL", async () => {
   expect(
     await query(
       'mutation { changeAccountDisplayName(id: "1", displayName: "  Ada Lovelace  ") { id displayName } }',
@@ -52,8 +42,9 @@ test("changes the display name and persists the normalized value", async () => {
   ).toEqual({
     data: { changeAccountDisplayName: { id: "1", displayName: "Ada Lovelace" } },
   });
-  const result = await postgres.db.query("SELECT display_name FROM accounts WHERE id = $1", ["1"]);
-  expect(result.rows).toEqual([{ display_name: "Ada Lovelace" }]);
+  expect(await query('{ account(id: "1") { id displayName } }')).toEqual({
+    data: { account: { id: "1", displayName: "Ada Lovelace" } },
+  });
 });
 
 test("rejects a blank display name and preserves the stored value", async () => {
@@ -65,8 +56,9 @@ test("rejects a blank display name and preserves the stored value", async () => 
       { message: "Account display name must not be blank", extensions: { code: "BAD_REQUEST" } },
     ],
   });
-  const result = await postgres.db.query("SELECT display_name FROM accounts WHERE id = $1", ["2"]);
-  expect(result.rows).toEqual([{ display_name: "Grace" }]);
+  expect(await query('{ account(id: "2") { displayName } }')).toEqual({
+    data: { account: { displayName: "Grace" } },
+  });
 });
 
 async function query(document: string): Promise<unknown> {

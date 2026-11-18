@@ -75,8 +75,9 @@ NODE_ENV=production pnpm start
 
 HTTP サーバーは NestJS 公式の `NodeAdapter`（`node:http`）です。GraphQL は `ApolloDriver` を使用し、ドライバーが必要とする `@as-integrations/express5` を入れています。[NestJS の HTTP アダプターと GraphQL 対応](https://docs.nestjs.com/http/performance#other-packages)
 
-## ドメインの単体テストと GraphQL の結合テストを実行する
+## 単体・結合・E2Eテストを実行する
 
-`pnpm test` は両方を実行します。`pnpm test:unit` は `Account` の表示名変更を単独で検証します。`pnpm test:integration` はビルド後、PGlite と API を空きポートで起動し、HTTP 経由で取得・変更・入力エラーを検証します。結合テストではアプリの Resolver、Repository、Drizzle、`pg` をそのまま使い、変更後のDBの値も確認します。[Vite Plus の Test ガイド](https://viteplus.dev/guide/test)
-
-[パスキーの結合テスト](test/passkey.integration.test.ts) は Node.js の仮想認証器で WebAuthn の応答を生成し、HTTP 経由で登録、セッション確認、サインアウト、同じパスキーでの再ログインを検証します。Auth.js と PostgreSQL アダプターは実際のコードを使います。
+- `pnpm test:unit` は `Account` の表示名変更ルールを検証します。
+- `pnpm test:integration` はアプリのビルドや起動を省き、`AccountRepository` から Drizzle と `pg` を通して PGlite への読み書きを検証します。[Repository の結合テスト](src/features/accounts/account.repository.integration.test.ts)
+- `pnpm test:e2e` はビルド済みのアプリを起動し、GraphQL の取得・変更・入力エラーと、Auth.js のパスキー登録・セッション確認・再ログインを HTTP 経由で検証します。パスキーの応答は Node.js の仮想認証器で生成します。[GraphQL の E2E テスト](test/graphql.e2e.test.ts)・[パスキーの E2E テスト](test/passkey.e2e.test.ts)
+- `pnpm test` はビルド後にすべてのテストを実行します。

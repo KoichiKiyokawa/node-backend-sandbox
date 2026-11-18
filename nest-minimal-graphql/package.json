@@ -10,7 +10,8 @@
     "start": "node dist/main.mjs",
     "test": "pnpm build && vp test run",
     "test:unit": "vp test run src/features/accounts/account.test.ts",
-    "test:integration": "pnpm build && vp test run test/"
+    "test:integration": "vp test run .integration.test.ts",
+    "test:e2e": "pnpm build && vp test run .e2e.test.ts"
   },
   "dependencies": {
     "@apollo/server": "^5.0.0",
