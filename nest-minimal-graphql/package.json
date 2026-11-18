@@ -1,0 +1,34 @@
+{
+  "name": "nest-minimal-graphql",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^24.11.0"
+  },
+  "scripts": {
+    "dev": "node --watch --import vite-plus/register src/main.ts",
+    "check": "vp lint src && tsc --noEmit",
+    "build": "nest build --builder rspack",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@nestjs/apollo": "^14.2.1",
+    "@nestjs/common": "^12.5.1",
+    "@nestjs/core": "^12.5.1",
+    "@nestjs/graphql": "^14.2.1",
+    "@nestjs/platform-node": "^12.5.1",
+    "graphql": "^16.11.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^12.0.13",
+    "@rspack/core": "^2.1.10",
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vite-plus": "^1.7.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
