@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "node --watch --import vite-plus/register src/main.ts",
     "check": "vp lint src && tsc --noEmit",
-    "build": "nest build --builder rspack",
+    "build": "nest build --builder rspack --rspackPath rspack.config.cjs",
     "start": "node dist/main.js"
   },
   "dependencies": {

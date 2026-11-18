@@ -33,6 +33,6 @@ npm run build
 NODE_ENV=production npm start
 ```
 
-Nest CLI の Rspack ビルダーがアプリを `dist/main.js` にまとめます。ビルダー内の SWC がデコレーターのメタデータを出力します。実行時の依存パッケージは `node_modules` から読み込みます。`webpack-node-externals` はビルダーが依存パッケージを外部化するために使う補助パッケージです。[NestJS の Rspack 移行ガイド](https://docs.nestjs.com/migration-guide#webpack-deprecation-in-cli-workflows)
+Nest CLI の Rspack ビルダーが、アプリと実行時の依存パッケージを `dist/` にまとめます。エントリーポイントは `dist/main.js` です。ビルダー内の SWC がデコレーターのメタデータを出力します。[`rspack.config.cjs`](rspack.config.cjs) で Node.js の組み込みモジュールを外部に残し、未インストールのオプション依存をスキップします。[NestJS 公式のコールドスタート計測](https://docs.nestjs.com/faq/serverless#benchmarks)
 
 HTTP サーバーは NestJS 公式の `NodeAdapter`（`node:http`）です。GraphQL は `ApolloDriver` を使用し、ドライバーが必要とする `@as-integrations/express5` を入れています。[NestJS の HTTP アダプターと GraphQL 対応](https://docs.nestjs.com/http/performance#other-packages)
