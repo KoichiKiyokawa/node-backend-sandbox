@@ -35,7 +35,7 @@ export class AccountResolver {
     if (!account) return null;
 
     try {
-      return this.repository.saveDisplayName(account.changeDisplayName(displayName));
+      return this.repository.save(account.changeDisplayName(displayName));
     } catch (error) {
       if (error instanceof InvalidAccountDisplayNameError) {
         throw new BadRequestException(error.message);
