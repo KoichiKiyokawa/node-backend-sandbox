@@ -27,7 +27,7 @@ export class AccountRepository {
     return row ? new Account(row.id, row.displayName) : null;
   }
 
-  async saveDisplayName(account: Account): Promise<Account | null> {
+  async save(account: Account): Promise<Account | null> {
     const [row] = await this.postgres.db
       .update(accountsTable)
       .set({ displayName: account.displayName })
