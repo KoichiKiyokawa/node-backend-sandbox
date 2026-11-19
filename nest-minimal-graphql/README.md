@@ -78,6 +78,6 @@ HTTP サーバーは NestJS 公式の `NodeAdapter`（`node:http`）です。Gra
 ## 単体・結合・E2Eテストを実行する
 
 - `pnpm test:unit` は `Account` の表示名変更ルールを検証します。
-- `pnpm test:integration` は Nest をプロセス内で初期化し、HTTP を待ち受けずに GraphQL 操作を実行します。Resolver、`Account`、Repository を通し、PGlite への保存と入力エラー時のDBの状態を確認します。[アカウント機能の結合テスト](src/features/accounts/account.graphql.integration.test.ts)
+- `pnpm test:integration` は HTTP や GraphQL の実行器を使わず、Nest の DI で `AccountResolver`・`AccountRepository`・`Postgres` を組み立て、Resolver のメソッドを直接呼びます。ドメインのルール、PGlite への保存、入力エラー時のDBの状態をモックなしで確認します。[アカウント機能の結合テスト](src/features/accounts/account.resolver.integration.test.ts)
 - `pnpm test:e2e` はビルド済みのアプリを起動し、GraphQL の更新・再取得と、Auth.js のパスキー登録・セッション確認・再ログインを HTTP 経由で検証します。パスキーの応答は Node.js の仮想認証器で生成します。[GraphQL の E2E テスト](test/graphql.e2e.test.ts)・[パスキーの E2E テスト](test/passkey.e2e.test.ts)
 - `pnpm test` はビルド後にすべてのテストを実行します。
